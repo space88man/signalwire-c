@@ -48,4 +48,6 @@ make %{?_smp_mflags}
 
 
 %changelog
+* Sun Dec 01 2024 S-P Chan <shihping.chan@gmail.com>
+- package with fedora copr+tito
 
