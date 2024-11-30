@@ -91,7 +91,6 @@ if("${CMAKE_OS_NAME}" STREQUAL "Centos")
 	# Enable component install
 	# Install shared libraries to /usr/lib64
 	set(CMAKE_INSTALL_LIBDIR lib64 CACHE PATH "Library installation location" FORCE)
-	set(CMAKE_INSTALL_RPATH "${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_LIBDIR}")
 	set(CPACK_RPM_COMPONENT_INSTALL ON)
 
 	# Find stuff we need for packaging on Centos
@@ -321,6 +320,9 @@ include(CPack)
 # the binary is re-linked with an rpath matching that of the install prefix)
 set(SKIP_BUILD_RPATH TRUE)
 set(CMAKE_INSTALL_RPATH "${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_LIBDIR}")
+if("${CMAKE_OS_NAME}" STREQUAL "Centos")
+    unset(CMAKE_INSTALL_RPATH)
+endif()
 
 # Use the link path for the rpath
 set(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
